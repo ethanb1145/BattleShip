@@ -1,7 +1,15 @@
 class Cell
-  attr_reader :name
+  attr_reader :coordinate
 
-  def initialize(name)
-    @name = name 
+  def initialize(coordinate)
+    @coordinate = coordinate 
+  end
+
+  def empty?
+    true 
+  end
+
+  def ship
+    nil
   end
 end
