@@ -38,4 +38,39 @@ RSpec.describe Cell do
       expect(cell.fired_upon?).to be(true)
     end
   end
+
+  describe "#render" do
+    it "returns a string of . , if cell has not been fired upon" do
+      cell_1 = Cell.new("B4")
+
+      expect(cell_1.render).to eq(".")
+    end
+
+    it "returns a string of M, if cell has been fired upon but has not hit a ship" do
+      cell_1 = Cell.new("B4")
+      cell_1.fire_upon
+
+      expect(cell_1.render).to eq("M")
+    end
+
+    it "returns a string of H, if cell has been fired upon and has hit a ship" do
+      cell_2 = Cell.new("C3")
+      cell_2.place_ship(@cruiser)
+      cell_2.fire_upon
+
+      expect(cell_2.render).to eq("H")
+      expect(@cruiser.sunk?).to be(false)
+    end
+
+    it "returns a string of X, if cell has been fired upon and has hit a ship and sinks it" do
+      cell_2 = Cell.new("C3")
+      cell_2.place_ship(@cruiser)
+      @cruiser.hit
+      @cruiser.hit
+      cell_2.fire_upon
+
+      expect(@cruiser.sunk?).to be(true)
+      expect(cell_2.render).to eq("X")
+    end
+  end
 end
