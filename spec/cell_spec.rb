@@ -4,6 +4,7 @@ require './lib/cell'
 RSpec.describe Cell do
   before(:each) do
     @cell = Cell.new("B4")
+    @cruiser = Ship.new("Cruiser", 3)
   end
   
   describe "#initialize" do
@@ -17,11 +18,18 @@ RSpec.describe Cell do
 
   describe "#place_ship" do
     it "places ship at specified cell" do
-      cruiser = Ship.new("Cruiser", 3)
-      cell.place_ship(cruiser)
+      cell.place_ship(@cruiser)
 
-      expect(cell.ship).to eq([cruiser])
+      expect(cell.ship).to eq(@cruiser)
       expect(cell.empty?).to be(false)
+    end
+  end
+
+  describe "#fire_upon" do
+    it "fires upon cell" do
+      cell.place_ship(@cruiser)
+
+      expect(cell.fired_upon?).to be(false)
     end
   end
 end
