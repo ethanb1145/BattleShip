@@ -72,5 +72,12 @@ RSpec.describe Cell do
       expect(@cruiser.sunk?).to be(true)
       expect(cell_2.render).to eq("X")
     end
+
+    it "returns a string of S if ship is present, (optional)" do
+      cell_2 = Cell.new("C3")
+      cell_2.place_ship(@cruiser)
+
+      expect(cell.render(true)).to eq ("S")
+    end
   end
 end
