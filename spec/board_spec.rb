@@ -25,4 +25,10 @@ RSpec.describe Board do
       end
     end
   end
+
+  describe "#valid_coordinate" do
+    it "tells us if a coordinate is on the board or not" do
+      
+    end
+  end
 end
