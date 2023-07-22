@@ -30,4 +30,13 @@ class Cell
     end
   end
 
+  def render(reveal_ship = false)
+    if fired_upon? && @ship != nil && @ship.sunk? == true
+      "X"
+    elsif fired_upon? && @ship != nil
+      "H"
+    else
+      "M"
+    end
+  end
 end
