@@ -27,8 +27,13 @@ class Board
     end
   end
 
-  def not_diagonal
+  def consecutive_coordinates?(coordinates)
+    coordinates.map{ |coordinate| coordinate[0]}.uniq.size == 1
+  end
 
-
+  def diagonal_placement?(coordinates)
+    rows = coordinates.map { |coordinate| coordinate[0] }.uniq
+    columns = coordinates.map { |coordinate| coordinate[1..].to_i }.uniq
+    rows.size > 1 && columns.size > 1
   end
 end
