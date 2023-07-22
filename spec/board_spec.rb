@@ -32,6 +32,15 @@ RSpec.describe Board do
     end
   end
 
+  describe "#valid_length?" do
+    it "has a valid length" do
+
+    expect(board.valid_length?(cruiser, ["A1", "A2"])).to eq(false)
+    expect(board.valid_length?(submarine, ["A2", "A3", "A4"])).to eq(false)
+    expect(board.valid_length?(cruiser, ["A2", "A3", "A4"])).to eq(true)
+    end
+  end
+    
   describe "#valid_placement?" do
     xit "tells us if a placement is valid or not" do
       expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to be(false)

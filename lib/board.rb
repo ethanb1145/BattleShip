@@ -27,13 +27,32 @@ class Board
     end
   end
 
-  def consecutive_coordinates?(coordinates)
-    coordinates.map{ |coordinate| coordinate[0]}.uniq.size == 1
+  def valid_length?(ship, coordinates)
+    ship.length == coordinates.length
   end
 
-  def diagonal_placement?(coordinates)
-    rows = coordinates.map { |coordinate| coordinate[0] }.uniq
-    columns = coordinates.map { |coordinate| coordinate[1..].to_i }.uniq
-    rows.size > 1 && columns.size > 1
+  def consecutive_coordinates?(ship, coordinates)
+  coordinates.map{ |coordinate| coordinate[0]}.uniq.size == 1
+  end
+
+  def diagonal_placement?(ship, coordinates)
+  rows = coordinates.map { |coordinate| coordinate[0] }.uniq
+  columns = coordinates.map { |coordinate| coordinate[1..].to_i }.uniq
+  rows.size > 1 && columns.size > 1
+  end
+
+  def overlap?(ship, coordinates)
+    coordinates.all? do |coordinate|
+      @cells[coordinate].ship.nil?
+    end
+  end
+
+  def valid_placement?(ship, coordinates)
+    valid_coordinate?(coordinates) &&
+    valid_length?(ship, coordinates) &&
+    consecutive_coordinates?(ship, coordinates) &&
+    diagonal_placement?(ship, coordinates) &&
+    overlap?(ship, coordinates)
   end
 end
+  
