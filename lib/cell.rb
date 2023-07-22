@@ -37,8 +37,10 @@ class Cell
       "X"
     elsif fired_upon? && @ship != nil
       "H"
-    else
+    elsif fired_upon? && @ship == nil
       "M"
+    else
+      "."
     end
   end
 end
