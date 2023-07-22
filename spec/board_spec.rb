@@ -15,6 +15,11 @@ RSpec.describe Board do
 
   describe "#cells" do
     it "is a 4x4 board with 16 cell objects" do
+      expect(board.cells).to be_a(Hash)
+      expect(board.cells.length).to eq(16)
+    end
+
+    it "has cells that are instances of Cell class"
 
 
     end
