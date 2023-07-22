@@ -19,9 +19,10 @@ RSpec.describe Board do
       expect(board.cells.length).to eq(16)
     end
 
-    it "has cells that are instances of Cell class"
-
-
+    it "has cells that are instances of Cell class" do
+      board.cells_each_value do |cell|
+        expect(cell).to be_a(Cell)
+      end
     end
   end
 end
