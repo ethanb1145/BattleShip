@@ -18,24 +18,24 @@ RSpec.describe Cell do
 
   describe "#place_ship" do
     it "places ship at specified cell" do
-      cell.place_ship(@cruiser)
+      @cell.place_ship(@cruiser)
 
-      expect(cell.ship).to eq(@cruiser)
-      expect(cell.empty?).to be(false)
+      expect(@cell.ship).to eq(@cruiser)
+      expect(@cell.empty?).to be(false)
     end
   end
 
   describe "#fire_upon" do
     it "fires upon cell" do
-      cell.place_ship(@cruiser)
+      @cell.place_ship(@cruiser)
 
-      expect(cell.fired_upon?).to be(false)
+      expect(@cell.fired_upon?).to be(false)
 
-      cell.place_ship(@cruiser)
-      cell.fire_upon
+      @cell.place_ship(@cruiser)
+      @cell.fire_upon
 
-      expect(cell.ship.health).to eq(2)
-      expect(cell.fired_upon?).to be(true)
+      expect(@cell.ship.health).to eq(2)
+      expect(@cell.fired_upon?).to be(true)
     end
   end
 
@@ -77,7 +77,7 @@ RSpec.describe Cell do
       cell_2 = Cell.new("C3")
       cell_2.place_ship(@cruiser)
 
-      expect(cell.render(true)).to eq ("S")
+      expect(cell_2.render(true)).to eq ("S")
     end
   end
 end
