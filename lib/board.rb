@@ -1,5 +1,5 @@
 class Board
-
+  attr_reader :cells
   def initialize
     @cells = {
       "A1" => Cell.new("A1"),
@@ -32,13 +32,13 @@ class Board
   end
 
   def consecutive_coordinates?(ship, coordinates)
-  coordinates.map{ |coordinate| coordinate[0]}.uniq.size == 1
+    coordinates.map{ |coordinate| coordinate[0]}.uniq.size == 1
   end
 
-  def diagonal_placement?(ship, coordinates)
-  rows = coordinates.map { |coordinate| coordinate[0] }.uniq
-  columns = coordinates.map { |coordinate| coordinate[1..].to_i }.uniq
-  rows.size > 1 && columns.size > 1
+  def not_diagonal_placement?(ship, coordinates)
+    rows = coordinates.map { |coordinate| coordinate[0] }.uniq
+    columns = coordinates.map { |coordinate| coordinate[1..].to_i }.uniq
+    rows.size == 1 && columns.size == 1
   end
 
   def overlap?(ship, coordinates)
@@ -47,12 +47,20 @@ class Board
     end
   end
 
+  # def horizontal_vertical?(ship, coordinates)
+  #   if diagonal_placement? != true
+  #     true
+  #   end
+  # end
+
   def valid_placement?(ship, coordinates)
     valid_coordinate?(coordinates) &&
     valid_length?(ship, coordinates) &&
-    consecutive_coordinates?(ship, coordinates) &&
-    diagonal_placement?(ship, coordinates) &&
+    consecutive_coordinates?(ship, coordinates) && 
+    not_diagonal_placement?(ship, coordinates) &&
     overlap?(ship, coordinates)
   end
+
+  def render
 end
   
