@@ -21,7 +21,7 @@ RSpec.describe Game do
     game = Game.new
   end
 
-  xit "can place ships on the computer board" do
+  it "can place ships on the computer board" do
     game = Game.new
     computer_board = Board.new
     computer_cruiser = Ship.new("cruiser", 3)

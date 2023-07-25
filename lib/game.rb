@@ -21,18 +21,19 @@ class Game
       puts "Invalid Input"        
     end
 
-    def computer_place_ship(ship)
+  def computer_place_ship(ship)
+    coordinates = []
+    until @computer_board.valid_placement?(ship, coordinates)
       coordinates = []
-      until @computer_board.valid_placement?(ship, coordinates)
-        coordinates = []
-        coordinates << @computer_board.cells.keys.sample
-        until coordinates.length == ship.length
-          coordinates << @computer_board.cells.keys.sample    
-          coordinates.uniq!
-        end
-        @computer_board.place(ship, coordinates)
-		return coordinates
+      coordinates << @computer_board.cells.keys.sample
+      until coordinates.length == ship.length
+        coordinates << @computer_board.cells.keys.sample    
+        coordinates.uniq!
+      end
+    end    
+      @computer_board.place(ship, coordinates)
+    end
+
+    return coordinates
   end
-
-
 end
