@@ -69,4 +69,18 @@ class Game
 			player_setup
 		end
 	end
+
+  def player_place_submarine(coordinates)
+		player_submarine = Ship.new("submarine", 2)
+		ship_coordinates = coordinates.split
+		if @player_board.valid_placement?(player_submarine, ship_coordinates) == true
+			@player_board.place(player_submarine, ship_coordinates)
+			puts @player_board.render(true)
+		else 
+			puts @player_board.render(true)
+			puts "Those are invalid coordinates, please try again"
+				submarine_input = gets.upcase.chomp
+				player_place_submarine(submarine_input)
+		end
+	end
 end
