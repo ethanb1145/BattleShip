@@ -16,3 +16,7 @@ RSpec.describe Game do
 
       expect(game.computer_board).to be_an_instance_of(Board)
   end
+
+  it "has a main menu" do
+    game = Game.new
+  end
