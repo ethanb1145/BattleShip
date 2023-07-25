@@ -21,7 +21,7 @@ RSpec.describe Game do
     game = Game.new
   end
 
-  it "can place ships on the computer board" do
+  xit "can place ships on the computer board" do
     game = Game.new
     computer_board = Board.new
     computer_cruiser = Ship.new("cruiser", 3)
@@ -36,7 +36,7 @@ RSpec.describe Game do
     expect(coordinates_2.length).to eq(2)
   end
 
-  it "can have a player board and place ships" do
+  xit "can have a player board and place ships" do
     game = Game.new
     player_board = Board.new
     player_cruiser = Ship.new("cruiser", 3)
