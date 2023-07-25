@@ -69,6 +69,17 @@ class Board
     end
   end
 
-  def render
+  def render(show = false)
+    output = "  1 2 3 4 \n"
+    ("A".."D").each do |row|
+      output += "#{row} "
+      ("1".."4").each do |column|
+        cell=@cells["#{row}#{column}"]
+        output += (cell.render(show))
+        output += " "
+      end
+        output += "\n"
+    end
+    output
+  end 
 end
-end  

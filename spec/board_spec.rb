@@ -100,7 +100,7 @@ RSpec.describe Board do
   end
 
   describe "#render" do
-    xit "renders the board with hidden ships" do
+    it "renders the board with hidden ships" do
     expect(@board.render).to eq(
       "  1 2 3 4 \n" +
       "A . . . . \n" +
@@ -111,8 +111,8 @@ RSpec.describe Board do
     end
   end
 
-  xit "renders the board with visible ships" do
-    @board.place_ship(@cruiser, ["A1", "A2", "A3"])
+  it "renders the board with visible ships" do
+    @board.place(@cruiser, ["A1", "A2", "A3"])
     expect(@board.render(true)).to eq(
       "  1 2 3 4 \n" +
       "A S S S . \n" +
