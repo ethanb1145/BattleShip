@@ -112,4 +112,28 @@ class Game
 		# win_condition
 		take_turn_computer
 	end
+
+  def take_turn_computer
+		cells = @player_board.cells.keys.sample
+		hits = []
+		hits << cells
+		until @player_board.valid_coordinate?(hits)
+			cells = @player_board.cells.keys.sample
+			hits << cell
+			until @player_board.cells[cells].fired_upon? == false
+				cells = @player_board.cells.keys.sample
+				hits << cells
+			end
+		end
+		@player_board.cells[cells].fire_upon
+		if @player_board.cells[cells].render == "M"
+			puts "    My shot on #{cells} was a miss!"
+		elsif @player_board.cells[cells].render == "H"
+			puts "    My shot on #{cells} was a hit!"
+		elsif @player_board.cells[cells].render == "X"
+			puts "    My shot on #{cells} sunk your ship!!"
+		end
+		win_condition
+		# take_turn_player
+	end
 end
