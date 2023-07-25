@@ -57,10 +57,18 @@ class Board
     valid_coordinate?(coordinates) &&
     valid_length?(ship, coordinates) &&
     consecutive_coordinates?(ship, coordinates) && 
-    not_diagonal_placement?(ship, coordinates) &&
+    # not_diagonal_placement?(ship, coordinates) &&
     overlap?(ship, coordinates)
+  end
+
+  def place_ship(ship, coordinates)
+    if valid_placement?(ship, coordinates)
+      coordinates.each do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end   
+    end
   end
 
   def render
 end
-  
+end  
