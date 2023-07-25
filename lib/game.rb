@@ -83,4 +83,33 @@ class Game
 				player_place_submarine(submarine_input)
 		end
 	end
+
+  def take_turn_player
+		puts "_________ COMPUTER BOARD _________"
+		puts @computer_board.render
+		puts "_________ PLAYER BOARD _________"
+		puts @player_board.render(true)
+		puts "Enter the coordinate for your shot:"
+		player_hit = gets.upcase.chomp
+		hits = []
+		cell = @computer_board.cells[player_hit]
+		hits << player_hit
+			if @computer_board.valid_coordinate?(hits) == true && cell.fired_upon? == false
+				cell.fired_upon
+				puts "          FIRING ON #{player_hit}!!"
+			else 
+				puts "Not a valid hit"
+				take_turn_player
+			end
+			if cell.render == "M"
+				puts "    Your shot on #{player_hit} was a miss!"
+			elsif cell.render == "H"
+				puts "    Your shot on #{player_hit} was a hit!"
+			elsif cell.render == "X"
+				puts "    Your shot on #{player_hit} sunk my ship!!"
+			end
+		puts @computer_board.render
+		# win_condition
+		take_turn_computer
+	end
 end
