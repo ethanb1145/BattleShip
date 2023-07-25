@@ -9,3 +9,10 @@ RSpec.describe Game do
 
     expect(game).to be_an_instance_of(Game)
     end
+
+    it "can have a computer board" do
+      game = Game.new
+      computer_board = Board.new
+
+      expect(game.computer_board).to be_an_instance_of(Board)
+  end
