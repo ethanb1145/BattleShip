@@ -20,3 +20,18 @@ RSpec.describe Game do
   it "has a main menu" do
     game = Game.new
   end
+
+  it "can place ships on the computer board" do
+    game = Game.new
+    computer_board = Board.new
+    computer_cruiser = Ship.new("cruiser", 3)
+    computer_submarine = Ship.new("submarine", 2)
+    coordinates_1 = game.computer_place_ship(computer_cruiser)
+    coordinates_2 = game.computer_place_ship(computer_submarine)
+    puts coordinates_1
+    puts coordinates_2
+    puts game.computer_board.render(true)
+
+    expect(coordinates_1.length).to eq(3)
+    expect(coordinates_2.length).to eq(2)
+  end
