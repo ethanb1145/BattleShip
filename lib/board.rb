@@ -61,7 +61,7 @@ class Board
     overlap?(ship, coordinates)
   end
 
-  def place_ship(ship, coordinates)
+  def place(ship, coordinates)
     if valid_placement?(ship, coordinates)
       coordinates.each do |coordinate|
         @cells[coordinate].place_ship(ship)
