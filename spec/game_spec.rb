@@ -35,3 +35,11 @@ RSpec.describe Game do
     expect(coordinates_1.length).to eq(3)
     expect(coordinates_2.length).to eq(2)
   end
+
+  it "can have a player board and place ships" do
+    game = Game.new
+    player_board = Board.new
+    player_cruiser = Ship.new("cruiser", 3)
+    player_submarine = Ship.new("submarine", 2)
+  end
+end
