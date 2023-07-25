@@ -20,6 +20,18 @@ class Game
     else
       puts "Invalid Input"        
     end
+  end  
+
+  def computer_setup			
+    computer_cruiser = Ship.new("cruiser", 3)
+    computer_submarine = Ship.new("submarine", 2)
+    computer_place_ship(computer_cruiser)
+    computer_place_ship(computer_submarine)
+      # puts @computer_board.render(true)
+    puts "I have laid my ships on the grid.\n"
+    puts "You now need to lay out your ships.\n"
+    puts "The Cruiser is 3 units long, and the Submarine is 2 units long.\n"
+  end
 
   def computer_place_ship(ship)
     coordinates = []
@@ -30,10 +42,19 @@ class Game
         coordinates << @computer_board.cells.keys.sample    
         coordinates.uniq!
       end
-    end    
-      @computer_board.place(ship, coordinates)
-    end
 
-    return coordinates
+      @computer_board.place(ship, coordinates)
+        return coordinates
+    end
   end
+
+  def player_setup
+		puts @player_board.render(true)
+		puts "Enter the squares for the Cruiser (3 spaces):"
+		cruiser_input = gets.upcase.chomp
+		player_place_cruiser(cruiser_input)
+		puts "Enter the squares for the Submarine (2 spaces):"
+		submarine_input = gets.upcase.chomp
+		player_place_submarine(submarine_input)
+	end
 end
