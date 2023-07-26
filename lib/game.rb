@@ -27,7 +27,7 @@ class Game
     computer_submarine = Ship.new("submarine", 2)
     computer_place_ship(computer_cruiser)
     computer_place_ship(computer_submarine)
-      # puts @computer_board.render(true)
+  
     puts "I have laid my ships on the grid.\n"
     puts "You now need to lay out your ships.\n"
     puts "The Cruiser is 3 units long, and the Submarine is 2 units long.\n"
@@ -45,7 +45,6 @@ class Game
     end  
       computer_board.place(ship, coordinates)
       return coordinates
-    
   end
 
   def player_setup
@@ -106,10 +105,9 @@ class Game
 			elsif cell.render == "H"
 				puts "    Your shot on #{player_hit} was a hit!"
 			elsif cell.render == "X"
-				puts "    Your shot on #{player_hit} sunk my ship!!"
+				puts "    Your shot on #{player_hit} sunk my ship!"
 			end
 		puts computer_board.render
-		# win_condition
 		take_turn_computer
 	end
 
@@ -134,7 +132,6 @@ class Game
 			puts "    My shot on #{cells} sunk your ship!!"
 		end
 		win_condition
-		# take_turn_player
 	end
 
   def win_condition
@@ -156,11 +153,9 @@ class Game
 		if ship_c.ship.sunk? && ship_s.ship.sunk?
 			puts "I won!"
 			puts "Thanks for playing!"
-			
 		elsif comp_c.ship.sunk? && comp_s.ship.sunk?
 			puts "                   You won!"
 			puts "Thanks for playing!"
-			
 		else
 			take_turn_player
 		end
