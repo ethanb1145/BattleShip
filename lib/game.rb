@@ -136,4 +136,33 @@ class Game
 		win_condition
 		# take_turn_player
 	end
+
+  def win_condition
+		
+		ship_c = @player_board.cells.values.find do |cell|
+			cell.ship != nil && cell.ship.name == "cruiser"
+		end
+		ship_s = @player_board.cells.values.find do |cell|
+			cell.ship != nil && cell.ship.name == "submarine"
+		end
+
+		comp_c = @computer_board.cells.values.find do |cell|
+			cell.ship != nil && cell.ship.name == "cruiser"
+		end
+		comp_s = @computer_board.cells.values.find do |cell|
+			cell.ship != nil && cell.ship.name == "submarine"
+		end
+
+		if ship_c.ship.sunk? && ship_s.ship.sunk?
+			puts "I won!"
+			puts "Thanks for playing!"
+			
+		elsif comp_c.ship.sunk? && comp_s.ship.sunk?
+			puts "                   You won!"
+			puts "Thanks for playing!"
+			
+		else
+			take_turn_player
+		end
+	end
 end
