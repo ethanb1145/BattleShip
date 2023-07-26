@@ -35,21 +35,21 @@ class Game
 
   def computer_place_ship(ship)
     coordinates = []
-    until @computer_board.valid_placement?(ship, coordinates)
+    until computer_board.valid_placement?(ship, coordinates)
       coordinates = []
-      coordinates << @computer_board.cells.keys.sample
+      coordinates << computer_board.cells.keys.sample
       until coordinates.length == ship.length
-        coordinates << @computer_board.cells.keys.sample    
+        coordinates << computer_board.cells.keys.sample    
         coordinates.uniq!
       end
-
-      @computer_board.place(ship, coordinates)
-        return coordinates
-    end
+    end  
+      computer_board.place(ship, coordinates)
+      return coordinates
+    
   end
 
   def player_setup
-		puts @player_board.render(true)
+		puts player_board.render(true)
 		puts "Enter the squares for the Cruiser (3 spaces):"
 		cruiser_input = gets.upcase.chomp
 		player_place_cruiser(cruiser_input)
@@ -61,9 +61,9 @@ class Game
   def player_place_cruiser(coordinates)
 		player_cruiser = Ship.new("cruiser", 3)
 		ship_coordinates = coordinates.split
-		if @player_board.valid_placement?(player_cruiser, ship_coordinates) == true
-			@player_board.place(player_cruiser, ship_coordinates)
-			puts @player_board.render(true)
+		if player_board.valid_placement?(player_cruiser, ship_coordinates) == true
+			player_board.place(player_cruiser, ship_coordinates)
+			puts player_board.render(true)
 		else 
 			puts "Those are invalid coordinates, please try again"
 			player_setup
@@ -73,11 +73,11 @@ class Game
   def player_place_submarine(coordinates)
 		player_submarine = Ship.new("submarine", 2)
 		ship_coordinates = coordinates.split
-		if @player_board.valid_placement?(player_submarine, ship_coordinates) == true
-			@player_board.place(player_submarine, ship_coordinates)
-			puts @player_board.render(true)
+		if player_board.valid_placement?(player_submarine, ship_coordinates) == true
+			player_board.place(player_submarine, ship_coordinates)
+			puts player_board.render(true)
 		else 
-			puts @player_board.render(true)
+			puts player_board.render(true)
 			puts "Those are invalid coordinates, please try again"
 				submarine_input = gets.upcase.chomp
 				player_place_submarine(submarine_input)
@@ -86,16 +86,16 @@ class Game
 
   def take_turn_player
 		puts "_________ COMPUTER BOARD _________"
-		puts @computer_board.render
+		puts computer_board.render
 		puts "_________ PLAYER BOARD _________"
-		puts @player_board.render(true)
+		puts player_board.render(true)
 		puts "Enter the coordinate for your shot:"
 		player_hit = gets.upcase.chomp
 		hits = []
-		cell = @computer_board.cells[player_hit]
+		cell = computer_board.cells[player_hit]
 		hits << player_hit
-			if @computer_board.valid_coordinate?(hits) == true && cell.fired_upon? == false
-				cell.fired_upon
+			if computer_board.valid_coordinate?(hits) == true && cell.fired_upon? == false
+				cell.fire_upon
 				puts "          FIRING ON #{player_hit}!!"
 			else 
 				puts "Not a valid hit"
@@ -108,29 +108,29 @@ class Game
 			elsif cell.render == "X"
 				puts "    Your shot on #{player_hit} sunk my ship!!"
 			end
-		puts @computer_board.render
+		puts computer_board.render
 		# win_condition
 		take_turn_computer
 	end
 
   def take_turn_computer
-		cells = @player_board.cells.keys.sample
+		cells = player_board.cells.keys.sample
 		hits = []
 		hits << cells
-		until @player_board.valid_coordinate?(hits)
-			cells = @player_board.cells.keys.sample
+		until player_board.valid_coordinate?(hits)
+			cells = player_board.cells.keys.sample
 			hits << cell
-			until @player_board.cells[cells].fired_upon? == false
-				cells = @player_board.cells.keys.sample
+			until player_board.cells[cells].fired_upon? == false
+				cells = player_board.cells.keys.sample
 				hits << cells
 			end
 		end
-		@player_board.cells[cells].fire_upon
-		if @player_board.cells[cells].render == "M"
+		player_board.cells[cells].fire_upon
+		if player_board.cells[cells].render == "M"
 			puts "    My shot on #{cells} was a miss!"
-		elsif @player_board.cells[cells].render == "H"
+		elsif player_board.cells[cells].render == "H"
 			puts "    My shot on #{cells} was a hit!"
-		elsif @player_board.cells[cells].render == "X"
+		elsif player_board.cells[cells].render == "X"
 			puts "    My shot on #{cells} sunk your ship!!"
 		end
 		win_condition
@@ -139,17 +139,17 @@ class Game
 
   def win_condition
 		
-		ship_c = @player_board.cells.values.find do |cell|
+		ship_c = player_board.cells.values.find do |cell|
 			cell.ship != nil && cell.ship.name == "cruiser"
 		end
-		ship_s = @player_board.cells.values.find do |cell|
+		ship_s = player_board.cells.values.find do |cell|
 			cell.ship != nil && cell.ship.name == "submarine"
 		end
 
-		comp_c = @computer_board.cells.values.find do |cell|
+		comp_c = computer_board.cells.values.find do |cell|
 			cell.ship != nil && cell.ship.name == "cruiser"
 		end
-		comp_s = @computer_board.cells.values.find do |cell|
+		comp_s = computer_board.cells.values.find do |cell|
 			cell.ship != nil && cell.ship.name == "submarine"
 		end
 
