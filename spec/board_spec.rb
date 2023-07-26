@@ -41,42 +41,11 @@ RSpec.describe Board do
     end
   end
 
-  
-
-    # it "checks if coordinates are consecutive" do
-    #   expect(@board.consecutive_coordinates?(@cruiser, ["A1", "A2", "A4"])).to be(false)
-    #   expect(@board.consecutive_coordinates?(@submarine, ["A1", "C1"])).to be(false)
-    #   expect(@board.consecutive_coordinates?(@cruiser, ["A3", "A2", "A1"])).to be(false)
-    #   expect(@board.consecutive_coordinates?(@submarine, ["C1", "B1"])).to be(false)
-    # end
-
-    # xit "checks if coordinates are diagonal" do
-    #   expect(@board.not_diagonal_placement?(@cruiser, ["A1", "B2", "C3"])).to be(false)
-    #   expect(@board.not_diagonal_placement?(@submarine, ["C2", "D3"])).to be(false)
-    # end
-
-    # xit "returns true if coordinates are valid" do
-    #   expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to be(true)
-    #   expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to be(true)
-    # end
-
     describe "#valid_placement?" do
     it "tells us if a placement is valid or not" do
       expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to be(false)
       expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to be(false)
       expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A3"])).to eq(true) 
-      # expect(@board.valid_placement?(@submarine, ["A1", "B1"])).to eq(true)
-      # expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to eq(false)
-      # expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to eq(false)
-      # expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to eq(false)
-      # expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to eq(false)
-      # expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to eq(false)
-      # expect(@board.valid_placement?(@cruiser, ["A1", "A2", "C3"])).to eq(false)
-      # expect(@board.valid_placement?(@cruiser, ["A1", "B1", "C1"])).to eq(true)
-      # expect(@board.valid_placement?(@submarine, ["A1", "B1"])).to eq(true)
-      # expect(@board.valid_placement?(@cruiser, ["A1", "B1", "C1"])).to eq(true)
-      # expect(@board.valid_placement?(@cruiser, ["C3", "C4", "C5"])).to eq(false)
-      # expect(@board.valid_placement?(@submarine, ["B1", "B2", "B3"])).to eq(false)
     end
   end
 
